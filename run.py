@@ -87,6 +87,11 @@ Ejemplos:
         action="store_true",
         help="Iniciar servidor web local",
     )
+    parser.add_argument(
+        "--api",
+        action="store_true",
+        help="Iniciar servidor FastAPI SaaS con los 15 API Endpoints (0.0.0.0:8080)",
+    )
 
     # Configuración
     parser.add_argument(
@@ -128,6 +133,8 @@ Ejemplos:
 
 
 def main():
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')
     parser = build_parser()
     args = parser.parse_args()
 
@@ -143,7 +150,15 @@ def main():
 
     # ── Determinar acción ─────────────────────────────────────────────────
 
-    # 1. Servidor web
+    # 1. Servidor web o API SaaS
+    if args.api:
+        print(BANNER)
+        print(C.info(f"Iniciando servidor SaaS FastAPI en http://0.0.0.0:{args.port}"))
+        print(C.info(f"Documentación Swagger disponible en: http://localhost:{args.port}/docs"))
+        import uvicorn
+        uvicorn.run("agent.api_server:app", host="0.0.0.0", port=args.port, reload=False)
+        return
+
     if args.serve:
         print(BANNER)
         agent.cmd_serve(port=args.port)
