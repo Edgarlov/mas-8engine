@@ -1,0 +1,33 @@
+# ──────────────────────────────────────────────────────────────────────
+# MAS-8ENGINE │ requirements.txt
+# Production-grade dependencies with pinned versions
+# ──────────────────────────────────────────────────────────────────────
+
+# ── Orchestration & LLM Framework ──
+langgraph>=0.2.0,<1.0.0
+langchain-core>=0.3.0,<1.0.0
+
+# ── Validation & Serialization ──
+pydantic>=2.7.0,<3.0.0
+pydantic-settings>=2.3.0,<3.0.0
+
+# ── Formal Verification (SAT/SMT) ──
+z3-solver>=4.13.0,<5.0.0
+
+# ── Mathematical Computing & Optimization ──
+numpy>=1.26.0,<3.0.0
+scipy>=1.13.0,<2.0.0
+networkx>=3.3,<4.0.0
+
+# ── API & Async Runtime ──
+fastapi>=0.115.0,<1.0.0
+uvicorn[standard]>=0.30.0,<1.0.0
+redis>=5.0.0,<6.0.0
+
+# ── NLP & Linguistic Processing ──
+nltk>=3.9.0,<4.0.0
+
+# ── Testing ──
+pytest>=8.2.0,<9.0.0
+pytest-asyncio>=0.24.0,<1.0.0
+httpx>=0.27.0,<1.0.0
