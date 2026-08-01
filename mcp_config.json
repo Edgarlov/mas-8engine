@@ -1,0 +1,49 @@
+{
+  "mcpServers": {
+    "agente-motor-ontologico-v2": {
+      "command": "C:/Users/edgar/Desktop/agentes/mas_8engine/.venv/Scripts/python.exe",
+      "args": [
+        "-m",
+        "mcp_server"
+      ],
+      "cwd": "C:/Users/edgar/Desktop/agentes/mas_8engine",
+      "env": {
+        "MAS8_API_HOST": "http://localhost:8000",
+        "MAS8_LOG_LEVEL": "INFO"
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:/Users/edgar/Desktop/agentes"
+      ]
+    },
+    "notebooklm": {
+      "command": "notebooklm-mcp",
+      "args": []
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "gdrive": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ]
+    }
+  }
+}
