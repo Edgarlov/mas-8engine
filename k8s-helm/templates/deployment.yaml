@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mas-8engine-mcp-daemons
+  labels:
+    app: mas-8engine-mcp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mas-8engine-mcp
+  template:
+    metadata:
+      labels:
+        app: mas-8engine-mcp
+    spec:
+      containers:
+      - name: mcp-server
+        image: mas8engine/mcp-server:v2.0.0
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+        ports:
+        - containerPort: 8000
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mas-8engine-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mas-8engine-mcp-daemons
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
