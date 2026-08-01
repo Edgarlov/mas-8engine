@@ -1,0 +1,24 @@
+ARQUITECTURA DEL REPOSITORIO GENERADO POR EL IDE AGÉNTICO
+├── 1. config/ & core/
+│   ├── 1.1. settings.py (Variables de entorno, API Keys, Redis/Z3 Config)
+│   └── 1.2. schemas.py (Pydantic v2 Models: ThoughtNode, CNFClause, State)
+├── 2. engines/ (Motores de Razonamiento Computacional)
+│   ├── 2.1. sat_solver.py (Verificador Z3 SAT/CDCL y conversión a CNF)
+│   ├── 2.2. nash_bargaining.py (Solución de Negociación Nash y Kalai)
+│   ├── 2.3. bayes_fuzzy.py (Actualización Bayesiana y Defuzzificador CoG)
+│   ├── 2.4. cbr_default.py (Ciclo CBR 4R y Retracción de Creencias AGM)
+│   └── 2.5. causal_abduction.py (Do-Calculus de Pearl y Cuchilla de Ockham)
+├── 3. agents/ (System Prompts e Interfaces de Agente)
+│   ├── 3.1. master_orchestrator.py (Agente 0: ToT / MCTS)
+│   ├── 3.2. perceptron_agent.py (Agente 1: Incerteza y Causalidad)
+│   ├── 3.3. memory_agent.py (Agente 2: Adaptación No Monótona)
+│   └── 3.4. verifier_agent.py (Agente 3: SAT, Nash e ISO 704)
+├── 4. pipeline/
+│   └── 4.1. iso_704_normalizer.py (POS Tagging, WSD y Tripletas RDF/OWL)
+├── 5. tests/
+│   ├── 5.1. test_sat_verifier.py
+│   ├── 5.2. test_nash_bargaining.py
+│   └── 5.3. test_monte_carlo_stress.py
+└── 6. deploy/
+    ├── 6.1. Dockerfile
+    └── 6.2. docker-compose.yml
