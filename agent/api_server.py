@@ -407,6 +407,53 @@ async def explain_unsat(req: UnsatExplainRequest):
     return await run_in_executor(_run)
 
 
+class GUIControlRequest(BaseModel):
+    action: str = Field(..., example="move", description="Acción a realizar: move, click, type, press, hotkey, screenshot")
+    x: Optional[int] = Field(default=None, description="Coordenada X en píxeles")
+    y: Optional[int] = Field(default=None, description="Coordenada Y en píxeles")
+    text: Optional[str] = Field(default=None, description="Texto a escribir si la acción es 'type'")
+    key: Optional[str] = Field(default=None, description="Nombre de la tecla si la acción es 'press'")
+    hotkeys: Optional[List[str]] = Field(default=None, description="Lista de teclas si la acción es 'hotkey'")
+
+
+@app.post("/api/v2/agent/gui-control", summary="16. Controlador Agéntico GUI Local (Teclado y Ratón)")
+async def gui_control_endpoint(req: GUIControlRequest):
+    """Control local agéntico de interfaz de usuario para automatización de teclado, ratón y capturas."""
+    def _run():
+        from agent.gui_controller import LocalGUIController
+        ctrl = LocalGUIController()
+        act = req.action.lower()
+        if act == "move":
+            if req.x is None or req.y is None:
+                raise HTTPException(status_code=400, detail="Coordenadas 'x' e 'y' son requeridas para 'move'.")
+            ctrl.move_mouse(req.x, req.y)
+            return {"status": "success", "action": "move", "position": [req.x, req.y]}
+        elif act == "click":
+            ctrl.click(req.x, req.y)
+            return {"status": "success", "action": "click", "position": [req.x, req.y] if req.x else ctrl.get_cursor_position()}
+        elif act == "type":
+            if not req.text:
+                raise HTTPException(status_code=400, detail="Parámetro 'text' requerido para 'type'.")
+            ctrl.type_text(req.text)
+            return {"status": "success", "action": "type", "typed_text": req.text}
+        elif act == "press":
+            if not req.key:
+                raise HTTPException(status_code=400, detail="Parámetro 'key' requerido para 'press'.")
+            ctrl.press_key(req.key)
+            return {"status": "success", "action": "press", "key": req.key}
+        elif act == "hotkey":
+            if not req.hotkeys:
+                raise HTTPException(status_code=400, detail="Parámetro 'hotkeys' requerido para 'hotkey'.")
+            ctrl.hotkey(*req.hotkeys)
+            return {"status": "success", "action": "hotkey", "keys": req.hotkeys}
+        elif act == "screenshot":
+            p = ctrl.capture_screenshot("scratch/screenshot_latest.png")
+            return {"status": "success", "action": "screenshot", "file_path": p}
+        else:
+            raise HTTPException(status_code=400, detail=f"Acción desconocida: {req.action}")
+    return await run_in_executor(_run)
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Ejecución Directa
 # ─────────────────────────────────────────────────────────────────────────────
