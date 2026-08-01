@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  # ── Redis (MCTS state persistence) ────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: mas8_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── MAS-8ENGINE API Server ────────────────────────────────────────
+  mas_8engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mas8_api
+    ports:
+      - "8000:8000"
+    environment:
+      - MAS8_REDIS_URL=redis://redis:6379/0
+      - MAS8_DEBUG=false
+      - MAS8_API_WORKERS=1
+      - MAS8_MCTS_MAX_DEPTH=5
+      - MAS8_MCTS_BRANCHING_FACTOR=3
+      - MAS8_Z3_TIMEOUT_MS=30000
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
