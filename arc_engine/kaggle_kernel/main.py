@@ -602,11 +602,36 @@ def main():
         print("Entorno de prueba local detectado. Generando submission de demostración...")
         submission_data["demo_task"] = [{"attempt_1": [[0]], "attempt_2": [[0]]}]
 
-    output_path = Path("submission.json")
-    with open(output_path, "w", encoding="utf-8") as f:
+    output_json = Path("submission.json")
+    with open(output_json, "w", encoding="utf-8") as f:
         json.dump(submission_data, f)
-
     print(f"✓ submission.json generado exitosamente con {len(submission_data)} tareas.")
+
+    # Generar submission.parquet obligatorio para Kaggle
+    output_parquet = Path("submission.parquet")
+    rows = []
+    for task_id, attempts in submission_data.items():
+        rows.append({
+            "id": str(task_id),
+            "output": json.dumps(attempts),
+            "attempt_1": json.dumps(attempts[0]["attempt_1"]) if attempts else "[]",
+            "attempt_2": json.dumps(attempts[0]["attempt_2"]) if attempts else "[]"
+        })
+    try:
+        import pandas as pd
+        df = pd.DataFrame(rows)
+        df.to_parquet(output_parquet)
+        print(f"✓ submission.parquet generado exitosamente ({len(df)} filas).")
+    except Exception as e:
+        print(f"[WARN] Error exportando parquet con pandas: {e}")
+        try:
+            import pyarrow as pa
+            import pyarrow.parquet as pq
+            table = pa.Table.from_pylist(rows)
+            pq.write_table(table, output_parquet)
+            print("✓ submission.parquet generado exitosamente mediante PyArrow.")
+        except Exception as ex:
+            print(f"[ERROR] No se pudo generar Parquet: {ex}")
 
 if __name__ == "__main__":
     main()
