@@ -1,26 +1,19 @@
-# Core NLP
-scikit-learn>=1.3.0
+# Core Dependencies — Ontology Engine v2.0 & FastAPI SaaS Server
 numpy>=1.24.0
-
-# Grafos
+scipy>=1.11.0
+scikit-learn>=1.3.0
 networkx>=3.1
+python-dateutil>=2.8.0
 
-# NLP avanzado (opcionales — instalar para mejor rendimiento)
-# spacy>=3.7.0
-# Modelo español: python -m spacy download es_core_news_sm
+# FastAPI & Web Server
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+requests>=2.31.0
 
-# Stemmer español (fallback sin spaCy)
+# NLP Engine
+spacy>=3.7.0
 nltk>=3.8.0
 
-# Embeddings densos (opcional — instalar para mejor clustering)
-# sentence-transformers>=2.2.0
-
-# RDF/SKOS export (opcional)
-# rdflib>=7.0.0
-
-# Web server — stdlib (no requiere instalación)
-
-# CLI — stdlib (no requiere instalación)
-
-# Utilidades
-python-dateutil>=2.8.0
+# Competition & Integrations
+kaggle>=1.6.0
