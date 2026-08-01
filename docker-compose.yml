@@ -1,32 +1,19 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  backend:
+  ontology-saas-api:
     build:
-      context: ./mas_8engine
+      context: .
       dockerfile: Dockerfile
-    container_name: mas8_backend
-    ports:
-      - "8000:8000"
-    environment:
-      - MAS8_API_HOST=http://localhost:8000
-      - MAS8_LOG_LEVEL=INFO
+    container_name: ontology_saas_api
     restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - PYTHONUNBUFFERED=1
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
-      interval: 10s
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/health"]
+      interval: 30s
       timeout: 5s
       retries: 3
-
-  frontend:
-    build:
-      context: ./frontend_agentic
-      dockerfile: Dockerfile
-    container_name: mas8_frontend
-    ports:
-      - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_API_HOST=http://backend:8000
-    depends_on:
-      - backend
-    restart: always
