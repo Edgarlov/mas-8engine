@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ontology Engine v2.0 - Motor de Minería Léxica y Estructuración Ontológica. Framework SOTA para generación de grafos imperativos y validación MECE.">
+    <title>Ontology Engine v2.0 — Ingeniería Ontológica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="animate-slide-up">
+            <h1>Ontology Engine v2.0</h1>
+            <p>Motor de Minería Léxica y Estructuración Ontológica</p>
+        </header>
+
+        <nav class="nav-tabs glass-panel animate-slide-up" style="animation-delay: 0.1s;">
+            <button class="nav-tab active" data-target="tab-pipeline">Pipeline</button>
+            <button class="nav-tab" data-target="tab-tree">Árbol Imperativo</button>
+            <button class="nav-tab" data-target="tab-json">JSON-LD</button>
+            <button class="nav-tab" data-target="tab-audit">Auditoría MECE</button>
+            <button class="nav-tab" data-target="tab-about">Acerca de</button>
+        </nav>
+
+        <main class="glass-panel animate-slide-up" style="animation-delay: 0.2s;">
+            <!-- Tab: Pipeline -->
+            <section id="tab-pipeline" class="tab-content active">
+                <div class="pipeline-grid">
+                    <div class="input-section">
+                        <h3 style="margin-bottom: var(--spacing-sm);">Corpus de Entrada (Texto Seco)</h3>
+                        <textarea id="corpus-input" class="corpus-input" placeholder="Inyecta corpus axiomático aquí..."></textarea>
+                        <div style="margin-top: var(--spacing-md); display: flex; gap: var(--spacing-sm);">
+                            <button id="btn-run-pipeline" class="btn btn-primary">Ejecutar Pipeline SOTA</button>
+                            <button id="btn-load-demo" class="btn btn-secondary">Cargar Demo Téc</button>
+                        </div>
+                    </div>
+                    
+                    <div class="status-section">
+                        <h3 style="margin-bottom: var(--spacing-sm);">Estado Operativo</h3>
+                        <div class="pipeline-steps">
+                            <div class="pipeline-step" id="step-1">
+                                <h4>P1: Filtrado</h4>
+                                <p class="metric-label">Extracción de entidades</p>
+                            </div>
+                            <div class="pipeline-step" id="step-2">
+                                <h4>P2: Clustering</h4>
+                                <p class="metric-label">Agrupación semántica</p>
+                            </div>
+                            <div class="pipeline-step" id="step-3">
+                                <h4>P3: Canonicalización</h4>
+                                <p class="metric-label">Resolución de identidades</p>
+                            </div>
+                            <div class="pipeline-step" id="step-4">
+                                <h4>P4: Grafo</h4>
+                                <p class="metric-label">Generación jerárquica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Árbol Imperativo -->
+            <section id="tab-tree" class="tab-content">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="stat-nodes-total">0</div>
+                        <div class="metric-label">Nodos Totales</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="stat-nodes-atomic">0</div>
+                        <div class="metric-label">Nodos Atómicos</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="stat-depth">0</div>
+                        <div class="metric-label">Profundidad Máx</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="stat-mece-violations">0</div>
+                        <div class="metric-label">Violaciones MECE</div>
+                    </div>
+                </div>
+                <h3 style="margin-bottom: var(--spacing-sm);">Topología del Grafo</h3>
+                <div id="tree-container" class="tree-view">
+                    <div style="color: var(--text-secondary); text-align: center; padding: var(--spacing-lg);">Esperando inicialización del pipeline...</div>
+                </div>
+            </section>
+
+            <!-- Tab: JSON-LD -->
+            <section id="tab-json" class="tab-content">
+                <div class="json-container">
+                    <div class="json-actions">
+                        <button id="btn-copy-json" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Copiar Portapapeles</button>
+                        <button id="btn-download-json" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Descargar .json</button>
+                    </div>
+                    <div id="json-viewer-content" class="json-viewer">{ "status": "idle", "message": "Awaiting payload" }</div>
+                </div>
+            </section>
+
+            <!-- Tab: Auditoría MECE -->
+            <section id="tab-audit" class="tab-content">
+                <h3 style="margin-bottom: var(--spacing-md);">Reporte de Exhaustividad y Exclusividad Mutua</h3>
+                <div id="audit-list" class="audit-list">
+                    <div class="audit-item severity-low">
+                        <strong>Sistema nominal.</strong> Ejecute el pipeline para generar diagnóstico.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Acerca de -->
+            <section id="tab-about" class="tab-content">
+                <h3>Arquitectura del Motor</h3>
+                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Especificación técnica: Ontology Engine v2.0 - Arquitectura de procesamiento léxico basado en determinismo topológico.</p>
+                <div class="ascii-art">
+[CORPUS] 
+   │
+   ▼
++---------------------+      +----------------------+
+| P1: LÉXICO (SOTA)   |=====>| P2: CLUSTERING (K-M) |
++---------------------+      +----------------------+
+                                      │
+   +----------------------------------+
+   │
+   ▼
++---------------------+      +----------------------+
+| P3: CANONICALIZACIÓN|=====>| P4: RESOLUCIÓN GRAFO |
++---------------------+      +----------------------+
+   │                                  │
+   ▼                                  ▼
+[AUDITORÍA MECE]                  [JSON-LD EXPORT]
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Ontology Engine v2.0 | ICA Protocol Activo | Framework Agóstico</p>
+        </footer>
+    </div>
+    <div id="toast-container" class="toast-container"></div>
+    <script src="app.js"></script>
+</body>
+</html>
