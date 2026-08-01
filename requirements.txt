@@ -1,0 +1,26 @@
+# Core NLP
+scikit-learn>=1.3.0
+numpy>=1.24.0
+
+# Grafos
+networkx>=3.1
+
+# NLP avanzado (opcionales — instalar para mejor rendimiento)
+# spacy>=3.7.0
+# Modelo español: python -m spacy download es_core_news_sm
+
+# Stemmer español (fallback sin spaCy)
+nltk>=3.8.0
+
+# Embeddings densos (opcional — instalar para mejor clustering)
+# sentence-transformers>=2.2.0
+
+# RDF/SKOS export (opcional)
+# rdflib>=7.0.0
+
+# Web server — stdlib (no requiere instalación)
+
+# CLI — stdlib (no requiere instalación)
+
+# Utilidades
+python-dateutil>=2.8.0
