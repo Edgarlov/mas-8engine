@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ontology-saas-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PORT
+        value: 8080
