@@ -1,0 +1,16 @@
+@prefix mas8: <http://mas8engine.org/ontology#> .
+
+mas8:MAS8Engine mas8:usesSolver "Z3SATVerifier" .
+
+mas8:Z3SATVerifier mas8:type "LogicEngine" .
+
+mas8:lenguaje_procesa_información mas8:hasCValueScore "1.585" .
+
+mas8:lenguaje_procesa_información_ontológica mas8:hasCValueScore "2.0" .
+
+mas8:modelo_lenguaje_procesa mas8:hasCValueScore "1.585" .
+
+mas8:modelo_lenguaje_procesa_información mas8:hasCValueScore "2.0" .
+
+mas8:procesa_información_ontológica_iso-704 mas8:hasCValueScore "2.0" .
+
