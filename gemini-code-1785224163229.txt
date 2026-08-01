@@ -1,0 +1,7 @@
+MAS-8ENGINE-MASTER (Orquestador ToT / MCTS)[cite: 10]
+                                                  │
+         ┌────────────────────────────────────────┼────────────────────────────────────────┐
+         │                                        │                                        │
+  [AGENTE PERCEPTIVO]                     [AGENTE ADAPTATIVO]                       [AGENTE VERIFICADOR]
+  (Bayes / Fuzzy / Do-Calculus)           (Default / CBR / Abducción)               (SAT-CDCL / Nash / ISO-704)
+ [cite: 7, 10]                          [cite: 10]                               [cite: 7, 8, 10]
