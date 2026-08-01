@@ -1,0 +1,2400 @@
+{
+  "@context": {
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "schema": "http://schema.org/",
+    "dc": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  },
+  "@id": "urn:engine:ontologia:grafo-imperativo-v2",
+  "@type": "skos:ConceptScheme",
+  "dc:title": "Grafo Imperativo Ontológico v2.0",
+  "dc:description": "Motor de Ingeniería Ontológica — Minería Léxica de Resolución Atómica",
+  "dc:source": "ESPECIFICACION_INGENIERIA_ONTOLOGICA.md v2.0",
+  "dc:created": "2026-08-01",
+  "dc:creator": "Ontology Engine v2.0 — ICA (Instancia de Conocimiento Axiomático)",
+  "_meta": {
+    "engine_version": "2.0.0",
+    "spec_source": "ESPECIFICACION_INGENIERIA_ONTOLOGICA.md v2.0",
+    "total_nodes": 56,
+    "atomic_nodes": 28,
+    "branch_nodes": 28,
+    "root_nodes": 4,
+    "max_depth": 4,
+    "mece_compliant": true,
+    "sat_kb": true,
+    "sat_solver": "Unit Propagation CNF",
+    "cnf_clauses": 56,
+    "formalism": "OWL 2 DL / FOL / SKOS Core",
+    "serialization": "JSON-LD 1.1 + SKOS + RDF 1.2"
+  },
+  "skos:hasTopConcept": [
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:1",
+      "skos:notation": "1",
+      "skos:prefLabel": "Minar y Filtrar Patrones Sintácticos Complejos",
+      "owl:imperative": "Minar y Filtrar Patrones Sintácticos Complejos",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-100000000000",
+      "_logic": "∀x (MinaPatrones(x) ↔ ExtraeSNC(x) ⊔ DiscriminaRuido(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:1.1",
+          "skos:notation": "1.1",
+          "skos:prefLabel": "Extraer Sintagmas Nominales Canónicos (SNC)",
+          "owl:imperative": "Extraer Sintagmas Nominales Canónicos (SNC)",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-110000000000",
+          "_logic": "∀x (ExtraeSNC(x) → ∃pat (PatronNominal(pat) ∧ tienePatron(x, pat)))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:1"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.1.1",
+              "skos:notation": "1.1.1",
+              "skos:prefLabel": "Detectar Patrones Sustantivo + Adjetivo",
+              "owl:imperative": "Detectar Patrones Sustantivo + Adjetivo",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-111000000000",
+              "_logic": "∀x (PatronSN_Adj(x) → Sustantivo(x) ⊓ ∃modif.Adjetivo(modif))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.1.1.1",
+                  "skos:notation": "1.1.1.1",
+                  "skos:prefLabel": "Aislar especificadores de dominio mediante etiquetado POS",
+                  "owl:imperative": "Aislar Especificadores de Dominio Mediante Etiquetado POS [ISO 24613:2021]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-111100000000",
+                  "_logic": "∀x (EspecificadorDominio(x) ↔ POS_Tag(x, 'NN') ∧ PosTagger(ISO-24613))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.1.1"
+                  },
+                  "dc:source": "ISO 24613:2021 — LMF Lexical Markup Framework"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.1.2",
+              "skos:notation": "1.1.2",
+              "skos:prefLabel": "Detectar Cadenas Sustantivo + Preposición + Sustantivo",
+              "owl:imperative": "Detectar Cadenas Sustantivo + Preposición + Sustantivo",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-112000000000",
+              "_logic": "∀x (PatronSN_Prep_SN(x) → SN(x) ⊓ ∃prep.Preposición ⊓ ∃SN.Sustantivo)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.1.2.1",
+                  "skos:notation": "1.1.2.1",
+                  "skos:prefLabel": "Mapear complementos del nombre mediante árboles de dependencia sintáctica",
+                  "owl:imperative": "Mapear Complementos del Nombre Mediante Árboles de Dependencia Sintáctica [ISO 24615-2:2011]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-112100000000",
+                  "_logic": "∀x (ComplementoNombre(x) ↔ DepRel(x, 'nmod') ∧ DependencyTree(ISO-24615-2))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.1.2"
+                  },
+                  "dc:source": "ISO 24615-2:2011 — SynAF Syntactic Annotation Framework"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:1.2",
+          "skos:notation": "1.2",
+          "skos:prefLabel": "Discriminar Ruido Morfosintáctico",
+          "owl:imperative": "Discriminar Ruido Morfosintáctico del Corpus",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-120000000000",
+          "_logic": "∀x (RuidoMorfosintáctico(x) ↔ Modismo(x) ⊔ EntidadNoTécnica(x))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:1"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.2.1",
+              "skos:notation": "1.2.1",
+              "skos:prefLabel": "Eliminar Modismos Volátiles",
+              "owl:imperative": "Eliminar Modismos Volátiles del Corpus Base",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-121000000000",
+              "_logic": "∀x (ModismoVolátil(x) → ¬ValorTécnico(x) ∧ EsLocución(x))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.2.1.1",
+                  "skos:notation": "1.2.1.1",
+                  "skos:prefLabel": "Purgar muletillas contextuales sin valor técnico del corpus base",
+                  "owl:imperative": "Purgar Muletillas Contextuales sin Valor Técnico del Corpus [NLTK Stopword Protocol]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-121100000000",
+                  "_logic": "∀x (Muletilla(x) ↔ Frecuencia(x) > θ ∧ InformaciónMutua(x) < ε)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.2.1"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.2.2",
+              "skos:notation": "1.2.2",
+              "skos:prefLabel": "Descartar Entidades No Técnicas",
+              "owl:imperative": "Descartar Entidades No Técnicas Mediante Filtrado",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-122000000000",
+              "_logic": "∀x (EntidadNoTécnica(x) ↔ Pronombre(x) ⊔ AdverbioInespecífico(x))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.2.2.1",
+                  "skos:notation": "1.2.2.1",
+                  "skos:prefLabel": "Excluir pronombres y adverbios inespecíficos mediante Stopword Lists",
+                  "owl:imperative": "Excluir Pronombres y Adverbios Inespecíficos Mediante Stopword Lists [ISO 639-1]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-122100000000",
+                  "_logic": "∀x (Excluido(x) ↔ x ∈ StopwordList(ISO-639-1) ∧ ¬TérminoTécnico(x))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.2.2"
+                  },
+                  "dc:source": "ISO 639-1:2002 — Codes for the representation of names of languages"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:2",
+      "skos:notation": "2",
+      "skos:prefLabel": "Extraer Candidatos Léxicos y Ejecutar Búsqueda en Grafo",
+      "owl:imperative": "Extraer Candidatos Léxicos Mediante Búsqueda en Grafo",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-200000000000",
+      "_logic": "∀x (ExtraeCandidatos(x) ↔ BFS(x) ⊔ RecursiónAtómica(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:2.1",
+          "skos:notation": "2.1",
+          "skos:prefLabel": "Aplicar Búsqueda en Amplitud (BFS) para Cobertura Horizontal",
+          "owl:imperative": "Aplicar Búsqueda en Amplitud (BFS) para Cobertura Horizontal",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-210000000000",
+          "_logic": "∀x (BFS(x) → CoberturaBFS(x) = ∪_{d=0}^{D} Nivel(x,d))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:2"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.1.1",
+              "skos:notation": "2.1.1",
+              "skos:prefLabel": "Mapear Horizontalmente Dimensiones Temáticas",
+              "owl:imperative": "Mapear Horizontalmente Dimensiones Temáticas del Corpus",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-211000000000",
+              "_logic": "∀x (MapeoHorizontal(x) → ∀rama (RamaPrimaria(rama) → Cubierta(x, rama)))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.1.1",
+                  "skos:notation": "2.1.1.1",
+                  "skos:prefLabel": "Cubrir transversalmente subsistemas identificando ramas primarias",
+                  "owl:imperative": "Cubrir Transversalmente Subsistemas Identificando Ramas Primarias [ISO/IEC 11179-3]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-211100000000",
+                  "_logic": "∀x (RamaPrimaria(x) ↔ Nivel(x) = 1 ∧ ∃corpus (Subsistema(corpus) ∧ Referencia(x, corpus)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.1"
+                  },
+                  "dc:source": "ISO/IEC 11179-3:2023 — Metadata registries"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.1.2",
+                  "skos:notation": "2.1.1.2",
+                  "skos:prefLabel": "Ejecutar clustering de sintagmas clave mediante métrica de distancia coseno",
+                  "owl:imperative": "Ejecutar Clustering de Sintagmas Clave Mediante Métrica de Distancia Coseno [Salton 1971]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-211200000000",
+                  "_logic": "∀S ∀v₁ ∀v₂ (MismoCLúster(v₁,v₂) ↔ Sim(v₁,v₂) ≥ τ ∧ τ = 0.25)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.1"
+                  },
+                  "dc:source": "Salton, G. (1971). The SMART Retrieval System"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.1.2",
+              "skos:notation": "2.1.2",
+              "skos:prefLabel": "Balancear Distribución Categorial",
+              "owl:imperative": "Balancear Distribución Categorial de Ramas del Grafo",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-212000000000",
+              "_logic": "∀x (BalanceoCategorial(x) → ∀c₁∀c₂ (|Cluster(c₁)| ≈ |Cluster(c₂)|))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.2.1",
+                  "skos:notation": "2.1.2.1",
+                  "skos:prefLabel": "Normalizar cardinalidad de ramas pares para mitigar sesgos de sobre-frecuencia",
+                  "owl:imperative": "Normalizar Cardinalidad de Ramas Pares para Mitigar Sesgos de Sobre-frecuencia",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-212100000000",
+                  "_logic": "∀x (NormCardinalidad(x) → ¬∃c (Frecuencia(c) > μ + 2σ))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.2.2",
+                  "skos:notation": "2.1.2.2",
+                  "skos:prefLabel": "Incluir dimensiones periféricas validadas para garantizar exhaustividad",
+                  "owl:imperative": "Incluir Dimensiones Periféricas Validadas para Garantizar Exhaustividad MECE",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-212200000000",
+                  "_logic": "∀x (DimensiónPeriférica(x) → Validada(x) ∧ ¬Redundante(x))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.2"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:2.2",
+          "skos:notation": "2.2",
+          "skos:prefLabel": "Explorar en Profundidad por Niveles (Recursión Atómica)",
+          "owl:imperative": "Explorar en Profundidad por Niveles Mediante Recursión Atómica",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-220000000000",
+          "_logic": "∀x (RecursiónAtómica(x) → ∀n (Nivel(n) ≤ 5 ∧ Indivisible(Hoja(n))))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:2"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.2.1",
+              "skos:notation": "2.2.1",
+              "skos:prefLabel": "Profundizar Jerárquicamente de Nivel 1 a Nivel 5",
+              "owl:imperative": "Profundizar Jerárquicamente de Nivel 1 a Nivel 5 (k-Máximo)",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-221000000000",
+              "_logic": "∀x (ProfundizarN1_N5(x) → depth(x) ∈ {1,2,3,4,5})",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.1.1",
+                  "skos:notation": "2.2.1.1",
+                  "skos:prefLabel": "Desglosar componentes sub-atómicos aislando atributos por nodo",
+                  "owl:imperative": "Desglosasar Componentes Sub-Atómicos Aislando Atributos por Nodo [OWL 2 Data Properties]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-221100000000",
+                  "_logic": "∀x (SubAtómico(x) → ¬∃y (Parte(y,x) ∧ Atributo(y) ≠ ∅))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.1"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.1.2",
+                  "skos:notation": "2.2.1.2",
+                  "skos:prefLabel": "Delimitar comandos y parámetros finales especificando primitivas",
+                  "owl:imperative": "Delimitar Comandos y Parámetros Finales Especificando Primitivas Atómicas",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-221200000000",
+                  "_logic": "∀x (Primitiva(x) ↔ ¬Descomponible(x) ∧ Operacional(x))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.1"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.2.2",
+              "skos:notation": "2.2.2",
+              "skos:prefLabel": "Verificar Indivisibilidad Funcional de Nodos",
+              "owl:imperative": "Verificar Indivisibilidad Funcional de Nodos Terminales",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-222000000000",
+              "_logic": "∀x (IndivisibleFuncional(x) ↔ ∀f (Función(f,x) → ¬∃g (Subfunción(g,f))))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.2.1",
+                  "skos:notation": "2.2.2.1",
+                  "skos:prefLabel": "Extraer códigos y estándares de referencia para términos atómicos indivisibles",
+                  "owl:imperative": "Extraer Códigos y Estándares de Referencia para Términos Atómicos Indivisibles [ISO 704:2009]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-222100000000",
+                  "_logic": "∀x (TérminoAtómico(x) → ∃s (Estándar(s) ∧ Referencia(x,s) ∧ ISO(s)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.2"
+                  },
+                  "dc:source": "ISO 704:2009 — Terminology work. Principles and methods"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.2.2",
+                  "skos:notation": "2.2.2.2",
+                  "skos:prefLabel": "Confirmar granularidad mínima atómica terminal (Level-k Maximum)",
+                  "owl:imperative": "Confirmar Granularidad Mínima Atómica Terminal (Level-k Maximum) [Quine 1951]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-222200000000",
+                  "_logic": "∀x (GranularidadMínima(x) ↔ ¬∃y (Descendiente(y,x) ∧ Atómico(y)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.2"
+                  },
+                  "dc:source": "Quine, W.V. (1951). Two Dogmas of Empiricism"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:3",
+      "skos:notation": "3",
+      "skos:prefLabel": "Normalizar y Mapear a Forma Canónica",
+      "owl:imperative": "Normalizar y Mapear Léxico a Forma Canónica",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-300000000000",
+      "_logic": "∀x (Normalizar(x) ↔ Lematizar(x) ⊓ Desambiguar(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:3.1",
+          "skos:notation": "3.1",
+          "skos:prefLabel": "Lematizar y Controlar Variación Formante",
+          "owl:imperative": "Lematizar y Controlar Variación Formante del Corpus",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-310000000000",
+          "_logic": "∀x (Lematizar(x) → f(W_var) = L_canon ∧ Inyectiva(f))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:3"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.1.1",
+              "skos:notation": "3.1.1",
+              "skos:prefLabel": "Reducir Morfemas a Forma Canónica",
+              "owl:imperative": "Reducir Morfemas a Forma Canónica Universal",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-311000000000",
+              "_logic": "∀w (ReducirMorfema(w) → Lema(w) = MorfemaRaíz(w))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.1.1",
+                  "skos:notation": "3.1.1.1",
+                  "skos:prefLabel": "Convertir formas plurale tantum a singular canónico",
+                  "owl:imperative": "Convertir Formas Plurale Tantum a Singular Canónico [ISO 24611:2012]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-311100000000",
+                  "_logic": "∀w (PluraletTantum(w) → Singular(w) = SingularCanónico(w))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.1"
+                  },
+                  "dc:source": "ISO 24611:2012 — MAF Morpho-syntactic Annotation Framework"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.1.2",
+                  "skos:notation": "3.1.1.2",
+                  "skos:prefLabel": "Estandarizar formas no personales reduciendo verbos a infinitivos",
+                  "owl:imperative": "Estandarizar Formas No Personales Reduciendo Verbos a Infinitivos [Real Academia Española]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-311200000000",
+                  "_logic": "∀v (FormaNoPersonal(v) → Infinitivo(v) = Lema(v))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.1"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.1.2",
+              "skos:notation": "3.1.2",
+              "skos:prefLabel": "Resolver Heterogeneidad Ortotipográfica",
+              "owl:imperative": "Resolver Heterogeneidad Ortotipográfica del Texto",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-312000000000",
+              "_logic": "∀x (Ortotipografía(x) → Guiones(x) ∧ Diacríticos(x) ∧ Espacios(x) normalizados)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.2.1",
+                  "skos:notation": "3.1.2.1",
+                  "skos:prefLabel": "Estandarizar uso de guiones, diacríticos y espacios en blanco",
+                  "owl:imperative": "Estandarizar Uso de Guiones, Diacríticos y Espacios en Blanco [ISO 8859-1]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-312100000000",
+                  "_logic": "∀x (Estandarizado(x) ↔ Guión(x) ∈ {'-','–'} ∧ Diacrítico(x) ∈ Unicode)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.2.2",
+                  "skos:notation": "3.1.2.2",
+                  "skos:prefLabel": "Mapear siglas y acrónimos a sintagmas expandidos",
+                  "owl:imperative": "Mapear Siglas y Acrónimos a Sintagmas Expandidos [Schwartz-Hearst 2003]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-312200000000",
+                  "_logic": "∀a (Acrónimo(a) → ExpandidoSH(a) = Schwartz-Hearst(a))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.2"
+                  },
+                  "dc:source": "Schwartz, A.S. & Hearst, M. (2003). A simple algorithm for identifying abbreviation definitions"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:3.2",
+          "skos:notation": "3.2",
+          "skos:prefLabel": "Desambiguar Polisemia e Identificar Sinónimos",
+          "owl:imperative": "Desambiguar Polisemia e Identificar Sinónimos Canónicos",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-320000000000",
+          "_logic": "∀x (Desambiguar(x) → ∀s (Sentido(s,x) → NodoDiscreto(s)))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:3"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.2.1",
+              "skos:notation": "3.2.1",
+              "skos:prefLabel": "Aislar Sentidos Polisémicos (WSD)",
+              "owl:imperative": "Aislar Sentidos Polisémicos Mediante Word Sense Disambiguation (WSD)",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-321000000000",
+              "_logic": "∀x (WSD(x) → ∃!s (SentidoContextual(s,x) ∧ Context(x) ⊢ s))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.1.1",
+                  "skos:notation": "3.2.1.1",
+                  "skos:prefLabel": "Generar nodos discretos independientes mediante análisis contextual",
+                  "owl:imperative": "Generar Nodos Discretos Independientes Mediante Análisis Contextual [WordNet 3.1]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-321100000000",
+                  "_logic": "∀x (NodoDiscreto(x) ↔ ∃!id (IRI(id) ∧ UUID_v4(id) ∧ binds(id,x)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.1"
+                  },
+                  "dc:source": "WordNet 3.1, Princeton University"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.1.2",
+                  "skos:notation": "3.2.1.2",
+                  "skos:prefLabel": "Asignar identificadores unívocos (IRI / UUID v4) a homónimos técnicos",
+                  "owl:imperative": "Asignar Identificadores Unívocos IRI/UUID v4 a Homónimos Técnicos [RFC 3987, RFC 4122]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-321200000000",
+                  "_logic": "∀x∀y (Homónimo(x,y) → IRI(x) ≠ IRI(y) ∧ UUID(x) ≠ UUID(y))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.1"
+                  },
+                  "dc:source": "RFC 3987 (IRI), RFC 4122 (UUID v4)"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.2.2",
+              "skos:notation": "3.2.2",
+              "skos:prefLabel": "Alinear Variantes Sinónimas",
+              "owl:imperative": "Alinear Variantes Sinónimas hacia Lema Preferente",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-322000000000",
+              "_logic": "∀x (AlinearSinónimos(x) → ∃l (LemaPreferente(l) ∧ AltLabel(x,l)))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.2.1",
+                  "skos:notation": "3.2.2.1",
+                  "skos:prefLabel": "Ejecutar enlace de formas alternativas hacia el lema preferente",
+                  "owl:imperative": "Ejecutar Enlace de Formas Alternativas hacia el Lema Preferente [SKOS skos:altLabel]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-322100000000",
+                  "_logic": "∀v (VarianteSinónima(v) → skos:altLabel(v) ∧ skos:exactMatch(v, LemaPref))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.2.2",
+                  "skos:notation": "3.2.2.2",
+                  "skos:prefLabel": "Validar lema preferente contra estándares internacionales",
+                  "owl:imperative": "Validar Lema Preferente contra Estándares Internacionales [ISO/IEEE/SNOMED CT]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-322200000000",
+                  "_logic": "∀l (LemaPreferente(l) → ∃s (Estándar(s) ∧ s ∈ {ISO, IEEE, SNOMED-CT} ∧ Valida(s,l)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.2"
+                  },
+                  "dc:source": "ISO/IEEE 24765:2017, SNOMED CT"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:4",
+      "skos:notation": "4",
+      "skos:prefLabel": "Estructurar Conceptos y Generar Grafo Imperativo",
+      "owl:imperative": "Estructurar Conceptos y Generar Grafo Imperativo MECE",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-400000000000",
+      "_logic": "∀x (EstructurarGrafo(x) ↔ MECE(x) ⊓ Imperativo(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:4.1",
+          "skos:notation": "4.1",
+          "skos:prefLabel": "Implementar Principios Ontológicos (MECE)",
+          "owl:imperative": "Implementar Principios Ontológicos MECE en el Grafo",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-410000000000",
+          "_logic": "∀x (MECE(x) ↔ ExclusiónMutua(x) ⊓ ExhaustividadColectiva(x))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:4"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.1.1",
+              "skos:notation": "4.1.1",
+              "skos:prefLabel": "Verificar Exclusión Mutua",
+              "owl:imperative": "Verificar Exclusión Mutua entre Nodos Hermanos",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-411000000000",
+              "_logic": "∀c₁∀c₂ (Hermanos(c₁,c₂) → c₁ ⊓ c₂ ⊑ ⊥)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.1.1",
+                  "skos:notation": "4.1.1.1",
+                  "skos:prefLabel": "Auditar solapamientos entre nodos pares y reparar intersecciones",
+                  "owl:imperative": "Auditar Solapamientos Semánticos entre Nodos Pares y Reparar Intersecciones [OWL 2 disjointWith]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-411100000000",
+                  "_logic": "∀c₁∀c₂ (Solapamiento(c₁,c₂) → ∃d (Discriminante(d) ∧ separa(d,c₁,c₂)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.1"
+                  },
+                  "dc:source": "OWL 2 — owl:disjointWith [W3C 2012]"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.1.2",
+                  "skos:notation": "4.1.1.2",
+                  "skos:prefLabel": "Asignar criterios discriminantes unívocos en las fronteras categoriales",
+                  "owl:imperative": "Asignar Criterios Discriminantes Unívocos en las Fronteras Categoriales [ISO/IEC 24707]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-411200000000",
+                  "_logic": "∀c (NodoFrontera(c) → ∃!criterio (CriterioDiscriminante(criterio) ∧ define(criterio,c)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.1"
+                  },
+                  "dc:source": "ISO/IEC 24707:2018 — Common Logic"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.1.2",
+              "skos:notation": "4.1.2",
+              "skos:prefLabel": "Verificar Exhaustividad Colectiva",
+              "owl:imperative": "Verificar Exhaustividad Colectiva del Árbol Jerárquico",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-412000000000",
+              "_logic": "∀p (NodoPadre(p) → ⊔{children(p)} = p)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.2.1",
+                  "skos:notation": "4.1.2.1",
+                  "skos:prefLabel": "Confirmar cobertura completa del nodo padre subsanando vacíos",
+                  "owl:imperative": "Confirmar Cobertura Completa del Nodo Padre Subsanando Vacíos Terminológicos",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-412100000000",
+                  "_logic": "∀p (Cobertura(p) → ∀concepto (SubConcepto(concepto,p) → ∃c (Hijo(c,p) ∧ cubre(c,concepto))))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.2.2",
+                  "skos:notation": "4.1.2.2",
+                  "skos:prefLabel": "Consolidar árbol integral MECE cerrando la jerarquía terminológica",
+                  "owl:imperative": "Consolidar Árbol Integral MECE Cerrando la Jerarquía Terminológica [ISO 1087:2019]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-412200000000",
+                  "_logic": "∀p (ÁrbolCerrado(p) → ¬∃vacío (Gap(vacío) ∧ BajoÁrbol(vacío,p)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.2"
+                  },
+                  "dc:source": "ISO 1087:2019 — Terminology work and terminology science"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:4.2",
+          "skos:notation": "4.2",
+          "skos:prefLabel": "Renderizar Flujo Sintáctico Operativo",
+          "owl:imperative": "Renderizar Flujo Sintáctico Operativo en Árbol Visual",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-420000000000",
+          "_logic": "∀x (Renderizar(x) → Visual(x) ∧ Imperativo(x))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:4"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.2.1",
+              "skos:notation": "4.2.1",
+              "skos:prefLabel": "Disponer Estructura Visual en Árbol Vertical",
+              "owl:imperative": "Disponer Estructura Visual en Árbol Vertical Normalizado",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-421000000000",
+              "_logic": "∀x (ÁrbolVertical(x) → ∀n (Nodo(n) → Sangría(n) = depth(n) × δ))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.1.1",
+                  "skos:notation": "4.2.1.1",
+                  "skos:prefLabel": "Formatear caracteres de ramificación (├──, └──) con sangría estricta",
+                  "owl:imperative": "Formatear Caracteres de Ramificación (├──, └──) con Sangría Estricta [UTF-8 Box Drawing]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-421100000000",
+                  "_logic": "∀n (Rama(n) ↔ Char(n) ∈ {'├──','└──'} ∧ Unicode(n))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.1"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.1.2",
+                  "skos:notation": "4.2.1.2",
+                  "skos:prefLabel": "Validar secuencias numéricas continuas en notación decimal jerárquica",
+                  "owl:imperative": "Validar Secuencias Numéricas Continuas en Notación Decimal Jerárquica [ISO 2145:1978]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-421200000000",
+                  "_logic": "∀n (Secuencia(n) → NotaciónDecimal(n) ∧ Continua(Hermanos(n)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.1"
+                  },
+                  "dc:source": "ISO 2145:1978 — Documentation, numbering of sections"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.2.2",
+              "skos:notation": "4.2.2",
+              "skos:prefLabel": "Transmutar Sintagmas Nominales a Acción",
+              "owl:imperative": "Transmutar Sintagmas Nominales a Acción Imperativa",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-422000000000",
+              "_logic": "∀np (Transmutar(np) → VP_imp(np) = Verbo(np) ⊕ Objeto(np) ⊕ Estándar(np))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.2.1",
+                  "skos:notation": "4.2.2.1",
+                  "skos:prefLabel": "Convertir nodos a sintaxis imperativa pura",
+                  "owl:imperative": "Convertir Nodos a Sintaxis Imperativa Pura [Verbo + Objeto + Estándar]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-422100000000",
+                  "_logic": "∀n (SintaxisImperativa(n) → Modo(Verbo(n)) = Imperativo ∧ Voz(n) = Activa)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.2"
+                  },
+                  "dc:source": "[Verbo + Objeto + Estándar]"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.2.2",
+                  "skos:notation": "4.2.2.2",
+                  "skos:prefLabel": "Exportar grafo de conocimiento a esquemas estructurados",
+                  "owl:imperative": "Exportar Grafo de Conocimiento a Esquemas Estructurados [JSON-LD 1.1 / SKOS Core / RDF 1.2]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-422200000000",
+                  "_logic": "∀g (ExportarGrafo(g) → JSON-LD(g) ∧ SKOS-Core(g) ∧ RDF-1.2(g))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.2"
+                  },
+                  "dc:source": "JSON-LD 1.1 [W3C 2020], SKOS Core [W3C 2009], RDF 1.2 [W3C 2024]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "@graph": [
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:1",
+      "skos:notation": "1",
+      "skos:prefLabel": "Minar y Filtrar Patrones Sintácticos Complejos",
+      "owl:imperative": "Minar y Filtrar Patrones Sintácticos Complejos",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-100000000000",
+      "_logic": "∀x (MinaPatrones(x) ↔ ExtraeSNC(x) ⊔ DiscriminaRuido(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:1.1",
+          "skos:notation": "1.1",
+          "skos:prefLabel": "Extraer Sintagmas Nominales Canónicos (SNC)",
+          "owl:imperative": "Extraer Sintagmas Nominales Canónicos (SNC)",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-110000000000",
+          "_logic": "∀x (ExtraeSNC(x) → ∃pat (PatronNominal(pat) ∧ tienePatron(x, pat)))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:1"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.1.1",
+              "skos:notation": "1.1.1",
+              "skos:prefLabel": "Detectar Patrones Sustantivo + Adjetivo",
+              "owl:imperative": "Detectar Patrones Sustantivo + Adjetivo",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-111000000000",
+              "_logic": "∀x (PatronSN_Adj(x) → Sustantivo(x) ⊓ ∃modif.Adjetivo(modif))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.1.1.1",
+                  "skos:notation": "1.1.1.1",
+                  "skos:prefLabel": "Aislar especificadores de dominio mediante etiquetado POS",
+                  "owl:imperative": "Aislar Especificadores de Dominio Mediante Etiquetado POS [ISO 24613:2021]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-111100000000",
+                  "_logic": "∀x (EspecificadorDominio(x) ↔ POS_Tag(x, 'NN') ∧ PosTagger(ISO-24613))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.1.1"
+                  },
+                  "dc:source": "ISO 24613:2021 — LMF Lexical Markup Framework"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.1.2",
+              "skos:notation": "1.1.2",
+              "skos:prefLabel": "Detectar Cadenas Sustantivo + Preposición + Sustantivo",
+              "owl:imperative": "Detectar Cadenas Sustantivo + Preposición + Sustantivo",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-112000000000",
+              "_logic": "∀x (PatronSN_Prep_SN(x) → SN(x) ⊓ ∃prep.Preposición ⊓ ∃SN.Sustantivo)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.1.2.1",
+                  "skos:notation": "1.1.2.1",
+                  "skos:prefLabel": "Mapear complementos del nombre mediante árboles de dependencia sintáctica",
+                  "owl:imperative": "Mapear Complementos del Nombre Mediante Árboles de Dependencia Sintáctica [ISO 24615-2:2011]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-112100000000",
+                  "_logic": "∀x (ComplementoNombre(x) ↔ DepRel(x, 'nmod') ∧ DependencyTree(ISO-24615-2))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.1.2"
+                  },
+                  "dc:source": "ISO 24615-2:2011 — SynAF Syntactic Annotation Framework"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:1.2",
+          "skos:notation": "1.2",
+          "skos:prefLabel": "Discriminar Ruido Morfosintáctico",
+          "owl:imperative": "Discriminar Ruido Morfosintáctico del Corpus",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-120000000000",
+          "_logic": "∀x (RuidoMorfosintáctico(x) ↔ Modismo(x) ⊔ EntidadNoTécnica(x))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:1"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.2.1",
+              "skos:notation": "1.2.1",
+              "skos:prefLabel": "Eliminar Modismos Volátiles",
+              "owl:imperative": "Eliminar Modismos Volátiles del Corpus Base",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-121000000000",
+              "_logic": "∀x (ModismoVolátil(x) → ¬ValorTécnico(x) ∧ EsLocución(x))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.2.1.1",
+                  "skos:notation": "1.2.1.1",
+                  "skos:prefLabel": "Purgar muletillas contextuales sin valor técnico del corpus base",
+                  "owl:imperative": "Purgar Muletillas Contextuales sin Valor Técnico del Corpus [NLTK Stopword Protocol]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-121100000000",
+                  "_logic": "∀x (Muletilla(x) ↔ Frecuencia(x) > θ ∧ InformaciónMutua(x) < ε)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.2.1"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:1.2.2",
+              "skos:notation": "1.2.2",
+              "skos:prefLabel": "Descartar Entidades No Técnicas",
+              "owl:imperative": "Descartar Entidades No Técnicas Mediante Filtrado",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-122000000000",
+              "_logic": "∀x (EntidadNoTécnica(x) ↔ Pronombre(x) ⊔ AdverbioInespecífico(x))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:1.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:1.2.2.1",
+                  "skos:notation": "1.2.2.1",
+                  "skos:prefLabel": "Excluir pronombres y adverbios inespecíficos mediante Stopword Lists",
+                  "owl:imperative": "Excluir Pronombres y Adverbios Inespecíficos Mediante Stopword Lists [ISO 639-1]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-122100000000",
+                  "_logic": "∀x (Excluido(x) ↔ x ∈ StopwordList(ISO-639-1) ∧ ¬TérminoTécnico(x))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:1.2.2"
+                  },
+                  "dc:source": "ISO 639-1:2002 — Codes for the representation of names of languages"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:2",
+      "skos:notation": "2",
+      "skos:prefLabel": "Extraer Candidatos Léxicos y Ejecutar Búsqueda en Grafo",
+      "owl:imperative": "Extraer Candidatos Léxicos Mediante Búsqueda en Grafo",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-200000000000",
+      "_logic": "∀x (ExtraeCandidatos(x) ↔ BFS(x) ⊔ RecursiónAtómica(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:2.1",
+          "skos:notation": "2.1",
+          "skos:prefLabel": "Aplicar Búsqueda en Amplitud (BFS) para Cobertura Horizontal",
+          "owl:imperative": "Aplicar Búsqueda en Amplitud (BFS) para Cobertura Horizontal",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-210000000000",
+          "_logic": "∀x (BFS(x) → CoberturaBFS(x) = ∪_{d=0}^{D} Nivel(x,d))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:2"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.1.1",
+              "skos:notation": "2.1.1",
+              "skos:prefLabel": "Mapear Horizontalmente Dimensiones Temáticas",
+              "owl:imperative": "Mapear Horizontalmente Dimensiones Temáticas del Corpus",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-211000000000",
+              "_logic": "∀x (MapeoHorizontal(x) → ∀rama (RamaPrimaria(rama) → Cubierta(x, rama)))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.1.1",
+                  "skos:notation": "2.1.1.1",
+                  "skos:prefLabel": "Cubrir transversalmente subsistemas identificando ramas primarias",
+                  "owl:imperative": "Cubrir Transversalmente Subsistemas Identificando Ramas Primarias [ISO/IEC 11179-3]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-211100000000",
+                  "_logic": "∀x (RamaPrimaria(x) ↔ Nivel(x) = 1 ∧ ∃corpus (Subsistema(corpus) ∧ Referencia(x, corpus)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.1"
+                  },
+                  "dc:source": "ISO/IEC 11179-3:2023 — Metadata registries"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.1.2",
+                  "skos:notation": "2.1.1.2",
+                  "skos:prefLabel": "Ejecutar clustering de sintagmas clave mediante métrica de distancia coseno",
+                  "owl:imperative": "Ejecutar Clustering de Sintagmas Clave Mediante Métrica de Distancia Coseno [Salton 1971]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-211200000000",
+                  "_logic": "∀S ∀v₁ ∀v₂ (MismoCLúster(v₁,v₂) ↔ Sim(v₁,v₂) ≥ τ ∧ τ = 0.25)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.1"
+                  },
+                  "dc:source": "Salton, G. (1971). The SMART Retrieval System"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.1.2",
+              "skos:notation": "2.1.2",
+              "skos:prefLabel": "Balancear Distribución Categorial",
+              "owl:imperative": "Balancear Distribución Categorial de Ramas del Grafo",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-212000000000",
+              "_logic": "∀x (BalanceoCategorial(x) → ∀c₁∀c₂ (|Cluster(c₁)| ≈ |Cluster(c₂)|))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.2.1",
+                  "skos:notation": "2.1.2.1",
+                  "skos:prefLabel": "Normalizar cardinalidad de ramas pares para mitigar sesgos de sobre-frecuencia",
+                  "owl:imperative": "Normalizar Cardinalidad de Ramas Pares para Mitigar Sesgos de Sobre-frecuencia",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-212100000000",
+                  "_logic": "∀x (NormCardinalidad(x) → ¬∃c (Frecuencia(c) > μ + 2σ))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.1.2.2",
+                  "skos:notation": "2.1.2.2",
+                  "skos:prefLabel": "Incluir dimensiones periféricas validadas para garantizar exhaustividad",
+                  "owl:imperative": "Incluir Dimensiones Periféricas Validadas para Garantizar Exhaustividad MECE",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-212200000000",
+                  "_logic": "∀x (DimensiónPeriférica(x) → Validada(x) ∧ ¬Redundante(x))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.1.2"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:2.2",
+          "skos:notation": "2.2",
+          "skos:prefLabel": "Explorar en Profundidad por Niveles (Recursión Atómica)",
+          "owl:imperative": "Explorar en Profundidad por Niveles Mediante Recursión Atómica",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-220000000000",
+          "_logic": "∀x (RecursiónAtómica(x) → ∀n (Nivel(n) ≤ 5 ∧ Indivisible(Hoja(n))))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:2"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.2.1",
+              "skos:notation": "2.2.1",
+              "skos:prefLabel": "Profundizar Jerárquicamente de Nivel 1 a Nivel 5",
+              "owl:imperative": "Profundizar Jerárquicamente de Nivel 1 a Nivel 5 (k-Máximo)",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-221000000000",
+              "_logic": "∀x (ProfundizarN1_N5(x) → depth(x) ∈ {1,2,3,4,5})",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.1.1",
+                  "skos:notation": "2.2.1.1",
+                  "skos:prefLabel": "Desglosar componentes sub-atómicos aislando atributos por nodo",
+                  "owl:imperative": "Desglosasar Componentes Sub-Atómicos Aislando Atributos por Nodo [OWL 2 Data Properties]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-221100000000",
+                  "_logic": "∀x (SubAtómico(x) → ¬∃y (Parte(y,x) ∧ Atributo(y) ≠ ∅))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.1"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.1.2",
+                  "skos:notation": "2.2.1.2",
+                  "skos:prefLabel": "Delimitar comandos y parámetros finales especificando primitivas",
+                  "owl:imperative": "Delimitar Comandos y Parámetros Finales Especificando Primitivas Atómicas",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-221200000000",
+                  "_logic": "∀x (Primitiva(x) ↔ ¬Descomponible(x) ∧ Operacional(x))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.1"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:2.2.2",
+              "skos:notation": "2.2.2",
+              "skos:prefLabel": "Verificar Indivisibilidad Funcional de Nodos",
+              "owl:imperative": "Verificar Indivisibilidad Funcional de Nodos Terminales",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-222000000000",
+              "_logic": "∀x (IndivisibleFuncional(x) ↔ ∀f (Función(f,x) → ¬∃g (Subfunción(g,f))))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:2.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.2.1",
+                  "skos:notation": "2.2.2.1",
+                  "skos:prefLabel": "Extraer códigos y estándares de referencia para términos atómicos indivisibles",
+                  "owl:imperative": "Extraer Códigos y Estándares de Referencia para Términos Atómicos Indivisibles [ISO 704:2009]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-222100000000",
+                  "_logic": "∀x (TérminoAtómico(x) → ∃s (Estándar(s) ∧ Referencia(x,s) ∧ ISO(s)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.2"
+                  },
+                  "dc:source": "ISO 704:2009 — Terminology work. Principles and methods"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:2.2.2.2",
+                  "skos:notation": "2.2.2.2",
+                  "skos:prefLabel": "Confirmar granularidad mínima atómica terminal (Level-k Maximum)",
+                  "owl:imperative": "Confirmar Granularidad Mínima Atómica Terminal (Level-k Maximum) [Quine 1951]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-222200000000",
+                  "_logic": "∀x (GranularidadMínima(x) ↔ ¬∃y (Descendiente(y,x) ∧ Atómico(y)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:2.2.2"
+                  },
+                  "dc:source": "Quine, W.V. (1951). Two Dogmas of Empiricism"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:3",
+      "skos:notation": "3",
+      "skos:prefLabel": "Normalizar y Mapear a Forma Canónica",
+      "owl:imperative": "Normalizar y Mapear Léxico a Forma Canónica",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-300000000000",
+      "_logic": "∀x (Normalizar(x) ↔ Lematizar(x) ⊓ Desambiguar(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:3.1",
+          "skos:notation": "3.1",
+          "skos:prefLabel": "Lematizar y Controlar Variación Formante",
+          "owl:imperative": "Lematizar y Controlar Variación Formante del Corpus",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-310000000000",
+          "_logic": "∀x (Lematizar(x) → f(W_var) = L_canon ∧ Inyectiva(f))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:3"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.1.1",
+              "skos:notation": "3.1.1",
+              "skos:prefLabel": "Reducir Morfemas a Forma Canónica",
+              "owl:imperative": "Reducir Morfemas a Forma Canónica Universal",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-311000000000",
+              "_logic": "∀w (ReducirMorfema(w) → Lema(w) = MorfemaRaíz(w))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.1.1",
+                  "skos:notation": "3.1.1.1",
+                  "skos:prefLabel": "Convertir formas plurale tantum a singular canónico",
+                  "owl:imperative": "Convertir Formas Plurale Tantum a Singular Canónico [ISO 24611:2012]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-311100000000",
+                  "_logic": "∀w (PluraletTantum(w) → Singular(w) = SingularCanónico(w))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.1"
+                  },
+                  "dc:source": "ISO 24611:2012 — MAF Morpho-syntactic Annotation Framework"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.1.2",
+                  "skos:notation": "3.1.1.2",
+                  "skos:prefLabel": "Estandarizar formas no personales reduciendo verbos a infinitivos",
+                  "owl:imperative": "Estandarizar Formas No Personales Reduciendo Verbos a Infinitivos [Real Academia Española]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-311200000000",
+                  "_logic": "∀v (FormaNoPersonal(v) → Infinitivo(v) = Lema(v))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.1"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.1.2",
+              "skos:notation": "3.1.2",
+              "skos:prefLabel": "Resolver Heterogeneidad Ortotipográfica",
+              "owl:imperative": "Resolver Heterogeneidad Ortotipográfica del Texto",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-312000000000",
+              "_logic": "∀x (Ortotipografía(x) → Guiones(x) ∧ Diacríticos(x) ∧ Espacios(x) normalizados)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.2.1",
+                  "skos:notation": "3.1.2.1",
+                  "skos:prefLabel": "Estandarizar uso de guiones, diacríticos y espacios en blanco",
+                  "owl:imperative": "Estandarizar Uso de Guiones, Diacríticos y Espacios en Blanco [ISO 8859-1]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-312100000000",
+                  "_logic": "∀x (Estandarizado(x) ↔ Guión(x) ∈ {'-','–'} ∧ Diacrítico(x) ∈ Unicode)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.1.2.2",
+                  "skos:notation": "3.1.2.2",
+                  "skos:prefLabel": "Mapear siglas y acrónimos a sintagmas expandidos",
+                  "owl:imperative": "Mapear Siglas y Acrónimos a Sintagmas Expandidos [Schwartz-Hearst 2003]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-312200000000",
+                  "_logic": "∀a (Acrónimo(a) → ExpandidoSH(a) = Schwartz-Hearst(a))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.1.2"
+                  },
+                  "dc:source": "Schwartz, A.S. & Hearst, M. (2003). A simple algorithm for identifying abbreviation definitions"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:3.2",
+          "skos:notation": "3.2",
+          "skos:prefLabel": "Desambiguar Polisemia e Identificar Sinónimos",
+          "owl:imperative": "Desambiguar Polisemia e Identificar Sinónimos Canónicos",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-320000000000",
+          "_logic": "∀x (Desambiguar(x) → ∀s (Sentido(s,x) → NodoDiscreto(s)))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:3"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.2.1",
+              "skos:notation": "3.2.1",
+              "skos:prefLabel": "Aislar Sentidos Polisémicos (WSD)",
+              "owl:imperative": "Aislar Sentidos Polisémicos Mediante Word Sense Disambiguation (WSD)",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-321000000000",
+              "_logic": "∀x (WSD(x) → ∃!s (SentidoContextual(s,x) ∧ Context(x) ⊢ s))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.1.1",
+                  "skos:notation": "3.2.1.1",
+                  "skos:prefLabel": "Generar nodos discretos independientes mediante análisis contextual",
+                  "owl:imperative": "Generar Nodos Discretos Independientes Mediante Análisis Contextual [WordNet 3.1]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-321100000000",
+                  "_logic": "∀x (NodoDiscreto(x) ↔ ∃!id (IRI(id) ∧ UUID_v4(id) ∧ binds(id,x)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.1"
+                  },
+                  "dc:source": "WordNet 3.1, Princeton University"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.1.2",
+                  "skos:notation": "3.2.1.2",
+                  "skos:prefLabel": "Asignar identificadores unívocos (IRI / UUID v4) a homónimos técnicos",
+                  "owl:imperative": "Asignar Identificadores Unívocos IRI/UUID v4 a Homónimos Técnicos [RFC 3987, RFC 4122]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-321200000000",
+                  "_logic": "∀x∀y (Homónimo(x,y) → IRI(x) ≠ IRI(y) ∧ UUID(x) ≠ UUID(y))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.1"
+                  },
+                  "dc:source": "RFC 3987 (IRI), RFC 4122 (UUID v4)"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:3.2.2",
+              "skos:notation": "3.2.2",
+              "skos:prefLabel": "Alinear Variantes Sinónimas",
+              "owl:imperative": "Alinear Variantes Sinónimas hacia Lema Preferente",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-322000000000",
+              "_logic": "∀x (AlinearSinónimos(x) → ∃l (LemaPreferente(l) ∧ AltLabel(x,l)))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:3.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.2.1",
+                  "skos:notation": "3.2.2.1",
+                  "skos:prefLabel": "Ejecutar enlace de formas alternativas hacia el lema preferente",
+                  "owl:imperative": "Ejecutar Enlace de Formas Alternativas hacia el Lema Preferente [SKOS skos:altLabel]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-322100000000",
+                  "_logic": "∀v (VarianteSinónima(v) → skos:altLabel(v) ∧ skos:exactMatch(v, LemaPref))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:3.2.2.2",
+                  "skos:notation": "3.2.2.2",
+                  "skos:prefLabel": "Validar lema preferente contra estándares internacionales",
+                  "owl:imperative": "Validar Lema Preferente contra Estándares Internacionales [ISO/IEEE/SNOMED CT]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-322200000000",
+                  "_logic": "∀l (LemaPreferente(l) → ∃s (Estándar(s) ∧ s ∈ {ISO, IEEE, SNOMED-CT} ∧ Valida(s,l)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:3.2.2"
+                  },
+                  "dc:source": "ISO/IEEE 24765:2017, SNOMED CT"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "skos:Concept",
+      "@id": "urn:nodo:4",
+      "skos:notation": "4",
+      "skos:prefLabel": "Estructurar Conceptos y Generar Grafo Imperativo",
+      "owl:imperative": "Estructurar Conceptos y Generar Grafo Imperativo MECE",
+      "skos:inScheme": {
+        "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+      },
+      "owl:hasKey": "550e8400-e29b-41d4-a716-400000000000",
+      "_logic": "∀x (EstructurarGrafo(x) ↔ MECE(x) ⊓ Imperativo(x))",
+      "_mece": {
+        "valid": true,
+        "role": "root",
+        "violations": []
+      },
+      "skos:narrower": [
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:4.1",
+          "skos:notation": "4.1",
+          "skos:prefLabel": "Implementar Principios Ontológicos (MECE)",
+          "owl:imperative": "Implementar Principios Ontológicos MECE en el Grafo",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-410000000000",
+          "_logic": "∀x (MECE(x) ↔ ExclusiónMutua(x) ⊓ ExhaustividadColectiva(x))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:4"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.1.1",
+              "skos:notation": "4.1.1",
+              "skos:prefLabel": "Verificar Exclusión Mutua",
+              "owl:imperative": "Verificar Exclusión Mutua entre Nodos Hermanos",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-411000000000",
+              "_logic": "∀c₁∀c₂ (Hermanos(c₁,c₂) → c₁ ⊓ c₂ ⊑ ⊥)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.1.1",
+                  "skos:notation": "4.1.1.1",
+                  "skos:prefLabel": "Auditar solapamientos entre nodos pares y reparar intersecciones",
+                  "owl:imperative": "Auditar Solapamientos Semánticos entre Nodos Pares y Reparar Intersecciones [OWL 2 disjointWith]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-411100000000",
+                  "_logic": "∀c₁∀c₂ (Solapamiento(c₁,c₂) → ∃d (Discriminante(d) ∧ separa(d,c₁,c₂)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.1"
+                  },
+                  "dc:source": "OWL 2 — owl:disjointWith [W3C 2012]"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.1.2",
+                  "skos:notation": "4.1.1.2",
+                  "skos:prefLabel": "Asignar criterios discriminantes unívocos en las fronteras categoriales",
+                  "owl:imperative": "Asignar Criterios Discriminantes Unívocos en las Fronteras Categoriales [ISO/IEC 24707]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-411200000000",
+                  "_logic": "∀c (NodoFrontera(c) → ∃!criterio (CriterioDiscriminante(criterio) ∧ define(criterio,c)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.1"
+                  },
+                  "dc:source": "ISO/IEC 24707:2018 — Common Logic"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.1.2",
+              "skos:notation": "4.1.2",
+              "skos:prefLabel": "Verificar Exhaustividad Colectiva",
+              "owl:imperative": "Verificar Exhaustividad Colectiva del Árbol Jerárquico",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-412000000000",
+              "_logic": "∀p (NodoPadre(p) → ⊔{children(p)} = p)",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.1"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.2.1",
+                  "skos:notation": "4.1.2.1",
+                  "skos:prefLabel": "Confirmar cobertura completa del nodo padre subsanando vacíos",
+                  "owl:imperative": "Confirmar Cobertura Completa del Nodo Padre Subsanando Vacíos Terminológicos",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-412100000000",
+                  "_logic": "∀p (Cobertura(p) → ∀concepto (SubConcepto(concepto,p) → ∃c (Hijo(c,p) ∧ cubre(c,concepto))))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.2"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.1.2.2",
+                  "skos:notation": "4.1.2.2",
+                  "skos:prefLabel": "Consolidar árbol integral MECE cerrando la jerarquía terminológica",
+                  "owl:imperative": "Consolidar Árbol Integral MECE Cerrando la Jerarquía Terminológica [ISO 1087:2019]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-412200000000",
+                  "_logic": "∀p (ÁrbolCerrado(p) → ¬∃vacío (Gap(vacío) ∧ BajoÁrbol(vacío,p)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.1.2"
+                  },
+                  "dc:source": "ISO 1087:2019 — Terminology work and terminology science"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "skos:Concept",
+          "@id": "urn:nodo:4.2",
+          "skos:notation": "4.2",
+          "skos:prefLabel": "Renderizar Flujo Sintáctico Operativo",
+          "owl:imperative": "Renderizar Flujo Sintáctico Operativo en Árbol Visual",
+          "skos:inScheme": {
+            "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+          },
+          "owl:hasKey": "550e8400-e29b-41d4-a716-420000000000",
+          "_logic": "∀x (Renderizar(x) → Visual(x) ∧ Imperativo(x))",
+          "_mece": {
+            "valid": true,
+            "role": "branch",
+            "violations": []
+          },
+          "skos:broader": {
+            "@id": "urn:nodo:4"
+          },
+          "skos:narrower": [
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.2.1",
+              "skos:notation": "4.2.1",
+              "skos:prefLabel": "Disponer Estructura Visual en Árbol Vertical",
+              "owl:imperative": "Disponer Estructura Visual en Árbol Vertical Normalizado",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-421000000000",
+              "_logic": "∀x (ÁrbolVertical(x) → ∀n (Nodo(n) → Sangría(n) = depth(n) × δ))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.1.1",
+                  "skos:notation": "4.2.1.1",
+                  "skos:prefLabel": "Formatear caracteres de ramificación (├──, └──) con sangría estricta",
+                  "owl:imperative": "Formatear Caracteres de Ramificación (├──, └──) con Sangría Estricta [UTF-8 Box Drawing]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-421100000000",
+                  "_logic": "∀n (Rama(n) ↔ Char(n) ∈ {'├──','└──'} ∧ Unicode(n))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.1"
+                  }
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.1.2",
+                  "skos:notation": "4.2.1.2",
+                  "skos:prefLabel": "Validar secuencias numéricas continuas en notación decimal jerárquica",
+                  "owl:imperative": "Validar Secuencias Numéricas Continuas en Notación Decimal Jerárquica [ISO 2145:1978]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-421200000000",
+                  "_logic": "∀n (Secuencia(n) → NotaciónDecimal(n) ∧ Continua(Hermanos(n)))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.1"
+                  },
+                  "dc:source": "ISO 2145:1978 — Documentation, numbering of sections"
+                }
+              ]
+            },
+            {
+              "@type": "skos:Concept",
+              "@id": "urn:nodo:4.2.2",
+              "skos:notation": "4.2.2",
+              "skos:prefLabel": "Transmutar Sintagmas Nominales a Acción",
+              "owl:imperative": "Transmutar Sintagmas Nominales a Acción Imperativa",
+              "skos:inScheme": {
+                "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+              },
+              "owl:hasKey": "550e8400-e29b-41d4-a716-422000000000",
+              "_logic": "∀np (Transmutar(np) → VP_imp(np) = Verbo(np) ⊕ Objeto(np) ⊕ Estándar(np))",
+              "_mece": {
+                "valid": true,
+                "role": "branch",
+                "violations": []
+              },
+              "skos:broader": {
+                "@id": "urn:nodo:4.2"
+              },
+              "skos:narrower": [
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.2.1",
+                  "skos:notation": "4.2.2.1",
+                  "skos:prefLabel": "Convertir nodos a sintaxis imperativa pura",
+                  "owl:imperative": "Convertir Nodos a Sintaxis Imperativa Pura [Verbo + Objeto + Estándar]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-422100000000",
+                  "_logic": "∀n (SintaxisImperativa(n) → Modo(Verbo(n)) = Imperativo ∧ Voz(n) = Activa)",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.2"
+                  },
+                  "dc:source": "[Verbo + Objeto + Estándar]"
+                },
+                {
+                  "@type": "skos:Concept",
+                  "@id": "urn:nodo:4.2.2.2",
+                  "skos:notation": "4.2.2.2",
+                  "skos:prefLabel": "Exportar grafo de conocimiento a esquemas estructurados",
+                  "owl:imperative": "Exportar Grafo de Conocimiento a Esquemas Estructurados [JSON-LD 1.1 / SKOS Core / RDF 1.2]",
+                  "skos:inScheme": {
+                    "@id": "urn:engine:ontologia:grafo-imperativo-v2"
+                  },
+                  "owl:hasKey": "550e8400-e29b-41d4-a716-422200000000",
+                  "_logic": "∀g (ExportarGrafo(g) → JSON-LD(g) ∧ SKOS-Core(g) ∧ RDF-1.2(g))",
+                  "_mece": {
+                    "valid": true,
+                    "role": "atomic",
+                    "violations": []
+                  },
+                  "skos:broader": {
+                    "@id": "urn:nodo:4.2.2"
+                  },
+                  "dc:source": "JSON-LD 1.1 [W3C 2020], SKOS Core [W3C 2009], RDF 1.2 [W3C 2024]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
