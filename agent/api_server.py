@@ -454,6 +454,24 @@ async def gui_control_endpoint(req: GUIControlRequest):
     return await run_in_executor(_run)
 
 
+class GUIPerceiveRequest(BaseModel):
+    output_path: Optional[str] = Field(default="scratch/vision_current.png", description="Ruta para guardar la captura de análisis")
+    text_content_to_diagnose: Optional[str] = Field(default=None, description="Texto libre para diagnóstico de errores")
+
+
+@app.post("/api/v2/agent/gui-perceive", summary="17. Motor de Percepción Visual y Diagnóstico GUI")
+async def gui_perceive_endpoint(req: GUIPerceiveRequest):
+    """Analiza visualmente la pantalla actual y diagnostica patrones de error u oportunidades de interacción."""
+    def _run():
+        from agent.gui_vision_engine import GUIVisionEngine
+        vision = GUIVisionEngine()
+        analysis = vision.analyze_current_screen(req.output_path)
+        if req.text_content_to_diagnose:
+            analysis["detected_errors"] = vision.diagnose_text_errors(req.text_content_to_diagnose)
+        return analysis
+    return await run_in_executor(_run)
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Ejecución Directa
 # ─────────────────────────────────────────────────────────────────────────────
