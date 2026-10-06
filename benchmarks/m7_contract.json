@@ -1,0 +1,23 @@
+{
+  "name": "M7 Controlled LLM vs LLM+KBS",
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "branch_A": "same LLM/configuration, no KBS context",
+  "branch_B": "same LLM/configuration, KBS context",
+  "requirements": [
+    "same reserved tasks",
+    "same observable model/configuration",
+    "same tools except KBS access",
+    "preserve exact inputs and outputs",
+    "no branch sees the other branch output"
+  ],
+  "metrics": [
+    "task correctness",
+    "unsupported material claims",
+    "correct abstention",
+    "claim-level traceability",
+    "critical errors",
+    "observable elapsed time",
+    "available usage metrics"
+  ],
+  "decision_rule": "No broad superiority claim without controlled evidence."
+}
