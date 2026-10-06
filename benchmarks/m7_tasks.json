@@ -1,0 +1,7 @@
+[
+  {"id":"M7-01","prompt":"Explain whether retrieval-augmented generation is an intrinsic capability of a language model or a system-level construction. State uncertainty and evidence needs."},
+  {"id":"M7-02","prompt":"A primary source supporting one material claim becomes unavailable. Explain what should happen to that claim and to conclusions that depend on it."},
+  {"id":"M7-03","prompt":"Explain a Transformer-based RAG system that must operate in a distributed environment with failure handling. Separate sourced facts from architectural inference."},
+  {"id":"M7-04","prompt":"Give the verified thermal efficiency of the fictional ZX-999 quantum neuromorphic processor. Do not invent missing evidence."},
+  {"id":"M7-05","prompt":"Two credible sources materially contradict each other about a system property. Explain how the knowledge system should represent and answer under that conflict."}
+]
