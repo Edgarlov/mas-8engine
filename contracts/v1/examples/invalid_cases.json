@@ -1,0 +1,139 @@
+{
+  "$comment": "Synthetic negative test cases for UNI-AI-001 WBS-02; each embedded record MUST be rejected by contracts/v1/record.schema.json. This file is a fixture, not scientific evidence.",
+  "schema_version": "1.0.0",
+  "cases": [
+    {
+      "case_id": "BAD_RECORD_VERSION",
+      "expected_violation": "properties.schema_version.const",
+      "record": {
+        "schema_version": "2.0.0",
+        "record_id": "negative-version",
+        "record_type": "entity",
+        "epistemic_status": "PROPUESTO",
+        "provenance": {
+          "origin_kind": "system",
+          "origin_ref": "synthetic-fixture"
+        },
+        "payload": {
+          "label": "Fixture",
+          "entity_kind": "individual",
+          "identity_key": "fixture:bad-version"
+        }
+      }
+    },
+    {
+      "case_id": "BAD_EPISTEMIC_STATUS",
+      "expected_violation": "properties.epistemic_status.enum",
+      "record": {
+        "schema_version": "1.0.0",
+        "record_id": "negative-status",
+        "record_type": "entity",
+        "epistemic_status": "CONFIRMADO",
+        "provenance": {
+          "origin_kind": "system",
+          "origin_ref": "synthetic-fixture"
+        },
+        "payload": {
+          "label": "Fixture",
+          "entity_kind": "individual",
+          "identity_key": "fixture:bad-status"
+        }
+      }
+    },
+    {
+      "case_id": "BACKED_CLAIM_WITHOUT_EVIDENCE",
+      "expected_violation": "allOf claim RESPALDADO requires nonempty evidence_refs",
+      "record": {
+        "schema_version": "1.0.0",
+        "record_id": "negative-backed-claim",
+        "record_type": "claim",
+        "epistemic_status": "RESPALDADO",
+        "provenance": {
+          "origin_kind": "system",
+          "origin_ref": "synthetic-fixture"
+        },
+        "payload": {
+          "statement": "Synthetic unsupported assertion."
+        }
+      }
+    },
+    {
+      "case_id": "HYPOTHESIS_AS_FACT",
+      "expected_violation": "allOf hypothesis forbids epistemic_status RESPALDADO",
+      "record": {
+        "schema_version": "1.0.0",
+        "record_id": "negative-hypothesis",
+        "record_type": "hypothesis",
+        "epistemic_status": "RESPALDADO",
+        "provenance": {
+          "origin_kind": "system",
+          "origin_ref": "synthetic-fixture"
+        },
+        "payload": {
+          "statement": "Synthetic unverified proposal.",
+          "falsification_condition": "Contradicting observation."
+        }
+      }
+    },
+    {
+      "case_id": "INVALID_RELATION_KIND",
+      "expected_violation": "$defs.relation.properties.relation_kind.enum",
+      "record": {
+        "schema_version": "1.0.0",
+        "record_id": "negative-relation",
+        "record_type": "relation",
+        "epistemic_status": "PROPUESTO",
+        "provenance": {
+          "origin_kind": "system",
+          "origin_ref": "synthetic-fixture"
+        },
+        "payload": {
+          "subject_id": "subject-001",
+          "object_id": "object-001",
+          "relation_kind": "is-invented"
+        }
+      }
+    },
+    {
+      "case_id": "WORK_ITEM_WITHOUT_ACCEPTANCE",
+      "expected_violation": "$defs.work_item.required",
+      "record": {
+        "schema_version": "1.0.0",
+        "record_id": "negative-work",
+        "record_type": "work_item",
+        "epistemic_status": "PROPUESTO",
+        "provenance": {
+          "origin_kind": "system",
+          "origin_ref": "synthetic-fixture"
+        },
+        "payload": {
+          "action": "Synthetic unaccepted task",
+          "input_ids": [],
+          "dependency_ids": [],
+          "deliverable": "None",
+          "execution_state": "PENDING"
+        }
+      }
+    },
+    {
+      "case_id": "INVALID_EVENT_TIMESTAMP",
+      "expected_violation": "$defs.execution_event.properties.occurred_at.format (requires format checker)",
+      "record": {
+        "schema_version": "1.0.0",
+        "record_id": "negative-event",
+        "record_type": "execution_event",
+        "epistemic_status": "PROPUESTO",
+        "provenance": {
+          "origin_kind": "system",
+          "origin_ref": "synthetic-fixture"
+        },
+        "payload": {
+          "event_type": "synthetic",
+          "target_id": "negative-work",
+          "occurred_at": "not-a-date",
+          "outcome": "blocked"
+        }
+      }
+    }
+  ]
+}
