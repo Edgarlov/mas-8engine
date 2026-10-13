@@ -1,0 +1,490 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:uni-ai-001:record:1.0.0",
+  "title": "UNI-AI-001 integration record contract v1.0.0",
+  "description": "Versioned transfer contract; schemas check record shape, not factual truth or cross-record referential integrity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "record_type",
+    "epistemic_status",
+    "provenance",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_id": {
+      "$ref": "#/$defs/id"
+    },
+    "record_type": {
+      "enum": [
+        "entity",
+        "relation",
+        "claim",
+        "evidence",
+        "hypothesis",
+        "work_item",
+        "execution_event"
+      ]
+    },
+    "epistemic_status": {
+      "enum": [
+        "RESPALDADO",
+        "INFERIDO",
+        "PROPUESTO",
+        "INCIERTO",
+        "DESCONOCIDO"
+      ]
+    },
+    "evidence_refs": {
+      "$ref": "#/$defs/refs"
+    },
+    "depends_on": {
+      "$ref": "#/$defs/refs"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origin_kind",
+        "origin_ref"
+      ],
+      "properties": {
+        "origin_kind": {
+          "enum": [
+            "repository",
+            "document",
+            "experiment",
+            "user",
+            "system",
+            "unknown"
+          ]
+        },
+        "origin_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "captured_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/id"
+      },
+      "uniqueItems": true
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "entity_kind",
+        "identity_key"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity_kind": {
+          "enum": [
+            "individual",
+            "concept",
+            "class",
+            "process",
+            "artifact",
+            "problem",
+            "other"
+          ]
+        },
+        "identity_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attributes": {
+          "type": "object"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject_id",
+        "object_id",
+        "relation_kind"
+      ],
+      "properties": {
+        "subject_id": {
+          "$ref": "#/$defs/id"
+        },
+        "object_id": {
+          "$ref": "#/$defs/id"
+        },
+        "relation_kind": {
+          "enum": [
+            "specialization",
+            "composition",
+            "association",
+            "dependency",
+            "supports",
+            "contradicts"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subject_id": {
+          "$ref": "#/$defs/id"
+        },
+        "premise_ids": {
+          "$ref": "#/$defs/refs"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locator",
+        "method"
+      ],
+      "properties": {
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observation": {
+          "type": "string"
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "hypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement",
+        "falsification_condition"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "falsification_condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rival_ids": {
+          "$ref": "#/$defs/refs"
+        },
+        "prediction": {
+          "type": "string"
+        }
+      }
+    },
+    "work_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action",
+        "input_ids",
+        "dependency_ids",
+        "deliverable",
+        "acceptance_criteria",
+        "execution_state"
+      ],
+      "properties": {
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_ids": {
+          "$ref": "#/$defs/refs"
+        },
+        "dependency_ids": {
+          "$ref": "#/$defs/refs"
+        },
+        "deliverable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptance_criteria": {
+          "type": "string",
+          "minLength": 1
+        },
+        "execution_state": {
+          "enum": [
+            "PENDING",
+            "READY",
+            "RUNNING",
+            "DONE",
+            "BLOCKED"
+          ]
+        }
+      }
+    },
+    "execution_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_type",
+        "target_id",
+        "occurred_at",
+        "outcome"
+      ],
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_id": {
+          "$ref": "#/$defs/id"
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "outcome": {
+          "enum": [
+            "observed",
+            "success",
+            "failure",
+            "blocked"
+          ]
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "entity"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/entity"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "relation"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/relation"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "claim"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/claim"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "evidence"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "hypothesis"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/hypothesis"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "work_item"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/work_item"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "execution_event"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/execution_event"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "claim"
+          },
+          "epistemic_status": {
+            "const": "RESPALDADO"
+          }
+        },
+        "required": [
+          "record_type",
+          "epistemic_status"
+        ]
+      },
+      "then": {
+        "required": [
+          "evidence_refs"
+        ],
+        "properties": {
+          "evidence_refs": {
+            "$ref": "#/$defs/refs",
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "hypothesis"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "epistemic_status": {
+            "enum": [
+              "INFERIDO",
+              "PROPUESTO",
+              "INCIERTO",
+              "DESCONOCIDO"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
