@@ -1,0 +1,135 @@
+[
+  {
+    "schema_version": "1.0.0",
+    "record_id": "problem-001",
+    "record_type": "entity",
+    "epistemic_status": "PROPUESTO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "contracts/v1/examples/valid_records.json"
+    },
+    "payload": {
+      "label": "Traceability problem",
+      "entity_kind": "problem",
+      "identity_key": "uni-ai-001:traceability"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "record_id": "concept-001",
+    "record_type": "entity",
+    "epistemic_status": "PROPUESTO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "contracts/v1/examples/valid_records.json"
+    },
+    "payload": {
+      "label": "Claim",
+      "entity_kind": "concept",
+      "identity_key": "uni-ai-001:claim"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "record_id": "relation-001",
+    "record_type": "relation",
+    "epistemic_status": "PROPUESTO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "contracts/v1/examples/valid_records.json"
+    },
+    "payload": {
+      "subject_id": "problem-001",
+      "object_id": "concept-001",
+      "relation_kind": "association"
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "record_id": "evidence-001",
+    "record_type": "evidence",
+    "epistemic_status": "RESPALDADO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "src/kbs_tech/core.py@942618f0e9f3088a229fb5506433a584657f2772"
+    },
+    "payload": {
+      "locator": "repo:src/kbs_tech/core.py@942618f0e9f3088a229fb5506433a584657f2772",
+      "method": "repository file inspection",
+      "observation": "The KBS class defines remove_source."
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "record_id": "claim-001",
+    "record_type": "claim",
+    "epistemic_status": "RESPALDADO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "src/kbs_tech/core.py@942618f0e9f3088a229fb5506433a584657f2772"
+    },
+    "payload": {
+      "statement": "The KBS class defines a remove_source method.",
+      "subject_id": "concept-001"
+    },
+    "evidence_refs": [
+      "evidence-001"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "record_id": "hypothesis-001",
+    "record_type": "hypothesis",
+    "epistemic_status": "PROPUESTO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "contracts/v1/examples/valid_records.json"
+    },
+    "payload": {
+      "statement": "Shared record contracts could improve traceability of cross-module handoffs.",
+      "falsification_condition": "An equivalent controlled workflow shows no reduction in unsupported handoffs.",
+      "rival_ids": [],
+      "prediction": "Fewer unsupported handoff records in the shared-contract condition."
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "record_id": "work-001",
+    "record_type": "work_item",
+    "epistemic_status": "PROPUESTO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "contracts/v1/examples/valid_records.json"
+    },
+    "payload": {
+      "action": "Validate the common record contract",
+      "input_ids": [
+        "claim-001"
+      ],
+      "dependency_ids": [],
+      "deliverable": "Reproducible validation results",
+      "acceptance_criteria": "Draft 2020-12 schema accepts valid fixtures and rejects invalid fixtures",
+      "execution_state": "PENDING"
+    },
+    "depends_on": [
+      "claim-001"
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "record_id": "event-001",
+    "record_type": "execution_event",
+    "epistemic_status": "PROPUESTO",
+    "provenance": {
+      "origin_kind": "repository",
+      "origin_ref": "contracts/v1/examples/valid_records.json"
+    },
+    "payload": {
+      "event_type": "illustrative_fixture_only",
+      "target_id": "work-001",
+      "occurred_at": "2026-01-01T00:00:00Z",
+      "outcome": "observed",
+      "details": "SYNTHETIC EXAMPLE ONLY: not evidence that a real task was run."
+    }
+  }
+]
