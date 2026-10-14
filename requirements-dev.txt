@@ -1,0 +1,2 @@
+# UNI-AI-001 schema conformance checks (test tooling only)
+jsonschema>=4.21,<5
