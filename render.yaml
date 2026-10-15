@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: yo-continuity-mcp-prototype
+    runtime: python
+    plan: free
+    region: frankfurt
+    branch: yo-continuity-deployment
+    autoDeployTrigger: off
+    buildCommand: pip install -r yo-continuity/requirements.txt
+    startCommand: cd yo-continuity && uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: YO_MCP_TOKEN
+        generateValue: true
+      - key: YO_DB_PATH
+        value: /tmp/yo_continuity.sqlite3
